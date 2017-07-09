@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">JBKWeather</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="china">中国</string>
+    <string name="progressDialogMessage">正在加载...</string>
+    <string name="load_failed">加载数据失败</string>
+
 </resources>
