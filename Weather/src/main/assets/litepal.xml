@@ -1,0 +1,11 @@
+<litepal>
+    <dbname value="jbk_weather"/>
+    <version value="1"/>
+
+    <list>
+        <mapping class="com.jbkweather.android.database.Province"/>
+        <mapping class="com.jbkweather.android.database.City"/>
+        <mapping class="com.jbkweather.android.database.County"/>
+    </list>
+
+</litepal>

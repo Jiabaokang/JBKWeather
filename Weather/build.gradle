@@ -20,13 +20,12 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     //测试相关的jar包引用
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testCompile 'junit:junit:4.12'
-
     //项目中引用的jar
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -37,5 +36,8 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.3.1'
     //图片加载框架
     compile 'com.github.bumptech.glide:glide:4.0.0-RC1'
-
+    //数据库的操作
+    compile 'org.litepal.android:core:1.5.1'
+    compile 'com.google.code.gson:gson:2.8.1'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
 }
