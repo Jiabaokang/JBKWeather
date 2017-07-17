@@ -1,6 +1,7 @@
 package com.jbkweather.android.views;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,7 +15,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jbkweather.android.MainActivity;
 import com.jbkweather.android.R;
+import com.jbkweather.android.WeatherActivity;
+import com.jbkweather.android.WeatherActivity_;
 import com.jbkweather.android.appbase.WeatherApplication;
 import com.jbkweather.android.database.City;
 import com.jbkweather.android.database.County;
@@ -122,6 +126,20 @@ public class ChooseAreaFragment extends Fragment implements View.OnClickListener
         }else if (currentLevel == LEVEL_CITY){
             selectedCity = cityList.get(position);
             queryCountys();
+        }else if(currentLevel == LEVEL_COUNTY){
+
+            String weatherId = countyList.get(position).getWeathreId();
+            if (getActivity() instanceof MainActivity) {
+                Intent intent = new Intent(getActivity(), WeatherActivity_.class);
+                intent.putExtra("weather_id", weatherId);
+                startActivity(intent);
+                getActivity().finish();
+            }else if (getActivity() instanceof WeatherActivity) {
+                WeatherActivity activity = (WeatherActivity) getActivity();
+//                activity.drawerLayout.closeDrawers();
+//                activity.swipeRefresh.setRefreshing(true);
+                activity.requestWeather(weatherId);
+            }
         }
     }
 
@@ -173,6 +191,7 @@ public class ChooseAreaFragment extends Fragment implements View.OnClickListener
      * 查询选中的城市对应的所有的县区，优先在数据库中查找，如果没有再到服务器去查
      */
     private void queryCountys() {
+
         titleText.setText(selectedCity.getCityName());
         backButton.setVisibility(View.VISIBLE);
         countyList  = DataSupport.where("cityid = ?",String.valueOf(selectedCity.getId())).find(County.class);
@@ -215,25 +234,32 @@ public class ChooseAreaFragment extends Fragment implements View.OnClickListener
                 }
 
                 if(result){
-                    getActivity().runOnUiThread(() ->{
-                        closeProgressDialog();
-                        if(Constant.PROVINCE.equals(type)){
-                            queryProvince();
-                        }else if(Constant.CITY.equals(type)){
-                            queryCities();
-                        }else if(Constant.COUNTY.equals(type)){
-                            queryCountys();
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            closeProgressDialog();
+                            if(Constant.PROVINCE.equals(type)){
+                                queryProvince();
+                            }else if(Constant.CITY.equals(type)){
+                                queryCities();
+                            }else if(Constant.COUNTY.equals(type)){
+                                queryCountys();
+                            }
                         }
                     });
+
                 }
             }
 
             @Override
             public void onFailure(Call call, IOException e) {
-                getActivity().runOnUiThread(()->{
-                    closeProgressDialog();
-                    Toast.makeText(WeatherApplication.getContext(),
-                            getString(R.string.load_failed),Toast.LENGTH_SHORT).show();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        closeProgressDialog();
+                        Toast.makeText(WeatherApplication.getContext(),
+                                getString(R.string.load_failed),Toast.LENGTH_SHORT).show();
+                    }
                 });
             }
 

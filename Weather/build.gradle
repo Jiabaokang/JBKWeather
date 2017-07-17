@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+def AAVersion = '4.0.0'
 
 android {
     compileSdkVersion 25
@@ -6,38 +9,42 @@ android {
     defaultConfig {
         applicationId "com.jbkweather.android"
         minSdkVersion 16
-        targetSdkVersion 21
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        //支持Lambda需要的配置
-        jackOptions.enabled = true;
-        compileOptions{
-            sourceCompatibility JavaVersion.VERSION_1_8
-            targetCompatibility JavaVersion.VERSION_1_8
-        }
-
+        //支持Lambda需要的配置，特别说明，AA和Lambda会期冲突，衡量之后还是觉得使用AA，
+        // 所以这里注释了支持Lambda的配置
+//        jackOptions.enabled = true;
+//        compileOptions {
+//            sourceCompatibility JavaVersion.VERSION_1_8
+//            targetCompatibility JavaVersion.VERSION_1_8
+//        }
     }
 
     buildTypes {
         release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
 
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     //测试相关的jar包引用
+    testCompile 'junit:junit:4.12'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    //项目中引用的jar
-    //圆形图片View
-    //图片加载框架
-    //数据库的操作
+    //design包和5.0以后新控件
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'de.hdodenhof:circleimageview:2.1.0'
@@ -46,8 +53,28 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.github.bumptech.glide:glide:4.0.0-RC1'
     compile 'org.litepal.android:core:1.5.1'
-    compile 'com.google.code.gson:gson:2.8.1'
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    compile 'com.android.support:support-v4:25.3.1'
-    testCompile 'junit:junit:4.12'
+    //compile 'com.google.code.gson:gson:2.8.1'
+    //compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    // compile 'com.android.support:support-v4:25.3.1'
+
+    //RxJava和RxAndroid、retrofit需要的包
+    compile 'io.reactivex:rxjava:1.1.0'
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
+
+    //AA注解需要的包
+    apt "org.androidannotations:androidannotations:$AAVersion"
+    compile "org.androidannotations:androidannotations-api:$AAVersion"
+
 }
+
+
+apt {
+    arguments {
+        androidManifestFile variant.outputs[0]?.processResources?.manifestFile
+        resourcesPackageName 'com.jbkweather.android'
+    }
+}
+
