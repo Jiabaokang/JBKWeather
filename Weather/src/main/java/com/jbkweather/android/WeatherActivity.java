@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.jbkweather.android.appbase.BaseActivity;
 import com.jbkweather.android.gson.Forecast;
 import com.jbkweather.android.gson.Weather;
 import com.jbkweather.android.util.HttpUtil;
@@ -38,7 +39,7 @@ import okhttp3.Response;
  */
 
 @EActivity(R.layout.activity_weather)
-public class WeatherActivity extends AppCompatActivity {
+public class WeatherActivity extends BaseActivity {
 
     @ViewById(R.id.weather_layout)
     ScrollView weatherLayout;

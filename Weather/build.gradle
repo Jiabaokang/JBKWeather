@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
+//apply tinker插件
+//apply plugin: 'com.tencent.tinker.patch'
 
 def AAVersion = '4.0.0'
 
@@ -37,6 +39,13 @@ android {
 }
 
 
+repositories {
+    //阿里云仓库
+    maven {
+        url "http://maven.aliyun.com/nexus/content/repositories/releases"
+    }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     //测试相关的jar包引用
@@ -67,6 +76,9 @@ dependencies {
     //AA注解需要的包
     apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
+
+    //阿里云热修复包
+    compile 'com.aliyun.ams:alicloud-android-hotfix:3.0.9'
 
 }
 

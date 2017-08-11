@@ -87,11 +87,13 @@ public class ImageLoader {
     /**
      * 阻塞队列LinkedBlockingQueue,这是一个线程安全的数据结构
      */
-    public static final Executor THREAD_POLL_EXECUTOR =
-            new ThreadPoolExecutor(CORE_POOL_SIZE,
-                    MAXIMUM_POOL_SIZE,
-                    KEEP_ALIVE,
-                    TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), sTHREAD_FACTORY);
+    public static final Executor THREAD_POLL_EXECUTOR = new ThreadPoolExecutor(
+            CORE_POOL_SIZE,
+            MAXIMUM_POOL_SIZE,
+            KEEP_ALIVE,
+            TimeUnit.SECONDS,
+            new LinkedBlockingQueue<Runnable>(),
+            sTHREAD_FACTORY);
 
 
     //在UI线程中更行界面
@@ -166,6 +168,12 @@ public class ImageLoader {
             mMemoryCache.put(key,bitmap);
         }
     }
+
+    /**
+     * 内存缓存
+     * @param key
+     * @return
+     */
 
     private Bitmap getBitmapFromMemoryCache(String key) {
         return mMemoryCache.get(key);
