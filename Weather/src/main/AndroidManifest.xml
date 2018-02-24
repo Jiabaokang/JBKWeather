@@ -14,7 +14,7 @@
 
 
     <application
-        android:name=".appbase.WeatherApplication_"
+        android:name=".appbase.WeatherApplication"
         android:allowBackup="true"
         android:icon="@mipmap/weather_logo"
         android:label="@string/app_name"
@@ -33,7 +33,7 @@
             android:value="MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCEUfEgB++QN6eJDEQOTe8GpBlpKhpEX7oPlCpqh6lR/6RkO52mh2pAxnq9o19uLu9cvAjv0Hgeyq0mu1miMIgbzFtXYXb0K2dX6jryRSVvEIuOqzKozbhMg+CT310rTJvw6dOmESyrx6qc2T7w8tnSfdJL9FAjAlqRAt2A4h72ebUtnGswjUi+Ea7VWn6jIMid1JyXa8u2OXZnyehSv+IurbF3zMcoY4oa9GG5ESWzCWWH60GwH2TqhZqpeJb3h/GTMIfkPXqdi/dG5NVA7QSAApdoHFTtWPyOrzbY2+mfB+u0AlH6cHiKN5EJbLFXVo82Rf60clThX3ksEHyyQnrFAgMBAAECggEAHErdEOlBewe7Zd1ei+R0EGp0GH1tImOJiB05OJALT0InJ1tr6RiZSoJl6jiNhiS4/44hJw3fMU5K2bZDgx93auI2QafQZIMHVM/7jKPmTioufPH0Ig3is1GbamLfLAv0Z/3HSIHxmEVYILN+9swmcRCAL8dsfx/Yt5ryO8Wdszuge3KleY48BtDeUWGbvMTiXnCmF7P7aQBeDTgU0a1E/t8kJNUmxzQIAFlGpF/qBDnfX/83hO7+0tmuYN4neaTwS5/9FI/vmNUKexfEt/umDmddb1ESlPgsv+QpUIDBaOw8AiIiDNUQP7COSl8Oern8nrQ9alYd3HBm7VfXhLbefQKBgQDhyLCu7eE8T6tBYZa5Tnm6koNbR3Bxd3LFdQEcjTLHa3Um1X1iChQdGMa0AQASyqxUletGQVyw4LehGeRh3jILsQ74zVQyPAUEpRDcqfF7pXLOi65PutXTL/q+FjNZrugVZlHCcf0Jgi/qQDmbqURM2M9K6Z/+OT0ZfqjxeFLMVwKBgQCWBzMmO9hI6wy5vOoF/sKCoSOcLL10t4lhW+Z7ZMMA2tuuYu4xr3V+gMabQXSvq1RlVL/+3UudHSRYZvUwoHZAx0CoYbQGw4usdZzy8wOJG8qq8VHoE38XwfXxcyt6S57qcnr5nsqhBOjVHefIm6qKjPJcfmAeYP2u8ztascEAQwKBgQDbU+gGVgB5ZO74eUNASXJIgjDmB7S8FIvCMpHc2XDddY59JeBBz4aQaVQE4f/fQVA8btH5El9nVzQqZAuN4pl88AeaO2Ox1MoPJAYIRXHWafbnm5q9ysIR/8a0xr4lPZonx5heqfpjNTs0dCVCCCDYAbkEjYQlIhcvX/Hfd8H+ywKBgFkfD8hvlmzCjD2ttks3ai6VMIUuoqC6Anb+U60LTzerywINrLeBJkeukcxalslf+nNzY9YveSJs1FFbX92yBG04r/UWjQ3TjZ42A7TinUAObVccoW4+XqorQ0FaDALK9y0IMnskU/RQ6UroR+8IYceKMNK3E7wYG7qYrLKUkzTnAoGBAKcbAkBn03O952CTuLNQq2+vUU6+46cGQKQzOx3Iz28jzeRsvitF8eLh7uE+qkitbw86w/oI0KvAT4fviBMvHFK8KPmWFcnEEczmB3A4cnMWvicjAEIFONVQZSEavYhv9ny8vjbdIzsVnAzm+R2GCvgbl87p65yiItgDYgoxl+aK" />
 
 
-        <activity android:name=".MainActivity_">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,7 +41,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".WeatherActivity_" />
+        <activity android:name=".WeatherActivity" />
     </application>
 
 </manifest>
