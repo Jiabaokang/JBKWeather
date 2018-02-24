@@ -2,19 +2,23 @@ package com.jbkweather.android;
 
 import android.Manifest;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.jbkweather.android.appbase.BaseActivity;
 
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.EActivity;
-
 import java.util.List;
 
-@EActivity(R.layout.activity_main)
+
 public class MainActivity extends BaseActivity implements BaseActivity.IRequestPermissionsListener{
 
-    @AfterViews
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        initView();
+    }
+
     void initView(){
         super.requestMustPermission(this, new String[]{Manifest.permission.CALL_PHONE,Manifest.permission.WRITE_EXTERNAL_STORAGE});
     }

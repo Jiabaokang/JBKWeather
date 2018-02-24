@@ -1,11 +1,12 @@
 package com.jbkweather.android;
 
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -22,13 +23,9 @@ import com.jbkweather.android.gson.Weather;
 import com.jbkweather.android.util.HttpUtil;
 import com.jbkweather.android.util.Utility;
 
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Background;
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.ViewById;
-
 import java.io.IOException;
 
+import butterknife.BindView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -38,61 +35,68 @@ import okhttp3.Response;
  * 显示天气信息界面
  */
 
-@EActivity(R.layout.activity_weather)
 public class WeatherActivity extends BaseActivity {
 
-    @ViewById(R.id.weather_layout)
+   //@BindView(R.id.back_img)
+
+    @BindView(R.id.weather_layout)
     ScrollView weatherLayout;
 
-    @ViewById(R.id.title_city)
+    @BindView(R.id.title_city)
     TextView titleCity;
 
-    @ViewById(R.id.title_update_time)
+    @BindView(R.id.title_update_time)
     TextView titleUpdateTime;
 
     //天气温度
-    @ViewById(R.id.degree_text)
+    @BindView(R.id.degree_text)
     TextView degreeText;
 
-    @ViewById(R.id.drawer_layout)
+    @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
     //下拉刷星
-    @ViewById(R.id.swipe_refresh)
+    @BindView(R.id.swipe_refresh)
     SwipeRefreshLayout swipeRefresh;
 
-    @ViewById(R.id.nav_button)
+    @BindView(R.id.nav_button)
     Button navButton;
 
-    @ViewById(R.id.weather_info_text)
+    @BindView(R.id.weather_info_text)
     TextView weatherInfoText;
 
-    @ViewById(R.id.forecast_layout)
+    @BindView(R.id.forecast_layout)
     LinearLayout forecastLayout;
 
-    @ViewById(R.id.aqi_text)
+    @BindView(R.id.aqi_text)
     TextView aqiText;
 
-    @ViewById(R.id.pm25_text)
+    @BindView(R.id.pm25_text)
     TextView pm25Text;
 
     //舒适度
-    @ViewById(R.id.comfort_text)
+    @BindView(R.id.comfort_text)
     TextView comfortText;
 
     //洗车指数
-    @ViewById(R.id.car_wash_text)
+    @BindView(R.id.car_wash_text)
     TextView carWashText;
 
     //运动建议
-    @ViewById(R.id.sport_text)
+    @BindView(R.id.sport_text)
     TextView sportText;
 
-    @ViewById(R.id.bing_pic_img)
+    @BindView(R.id.bing_pic_img)
     ImageView bingPicImg;
 
 
-    @AfterViews
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_weather);
+        init();
+    }
+
     void init() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String weatherString = prefs.getString("weather", null);

@@ -8,13 +8,11 @@ import com.taobao.sophix.PatchStatus;
 import com.taobao.sophix.SophixManager;
 import com.taobao.sophix.listener.PatchLoadStatusListener;
 
-import org.androidannotations.annotations.EApplication;
 import org.litepal.LitePal;
 
 /**
  * Created by sunny on 2017/7/9.
  */
-@EApplication
 public class WeatherApplication extends Application {
 
 

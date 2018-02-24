@@ -1,17 +1,25 @@
 package com.jbkweather.android.appbase;
 
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.jbkweather.android.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import butterknife.ButterKnife;
 
 /**
  * Created by sunny on 2017/8/10.
@@ -29,6 +37,27 @@ public class BaseActivity extends AppCompatActivity {
 
 
     private List<String> permissionList = new ArrayList<>();
+    public Context mContext;
+
+
+    @Override
+    public void setContentView(@LayoutRes int layoutResID) {
+        super.setContentView(layoutResID);
+        mContext = this;
+        ButterKnife.bind(this);
+    }
+
+    @Override
+    public void setContentView(View view) {
+        super.setContentView(view);
+        ButterKnife.bind(this);
+    }
+
+    @Override
+    public void setContentView(View view, ViewGroup.LayoutParams params) {
+        super.setContentView(view, params);
+        ButterKnife.bind(this);
+    }
 
     /**
      * 申请权限的方法

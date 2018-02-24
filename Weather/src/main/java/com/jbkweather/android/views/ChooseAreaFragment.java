@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.jbkweather.android.MainActivity;
 import com.jbkweather.android.R;
 import com.jbkweather.android.WeatherActivity;
-import com.jbkweather.android.WeatherActivity_;
 import com.jbkweather.android.appbase.WeatherApplication;
 import com.jbkweather.android.database.City;
 import com.jbkweather.android.database.County;
@@ -130,7 +129,7 @@ public class ChooseAreaFragment extends Fragment implements View.OnClickListener
 
             String weatherId = countyList.get(position).getWeathreId();
             if (getActivity() instanceof MainActivity) {
-                Intent intent = new Intent(getActivity(), WeatherActivity_.class);
+                Intent intent = new Intent(getActivity(), WeatherActivity.class);
                 intent.putExtra("weather_id", weatherId);
                 startActivity(intent);
                 getActivity().finish();
